@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import fallbackImg from "../../../assets/fallbackImg.png";
 import { PixabayImage } from "../types/apiData.types";
 
 type Props = {
@@ -20,7 +19,6 @@ const useFetchImageList = ({
   length,
 }: Props): State => {
   const url = `https://pixabay.com/api/?key=44873050-711ccfe84c5f03adffb4f1df1&q=all&image_type=photo&per_page=${length}&page=1`;
-  const fallbackArray = new Array(length).fill(fallbackImg);
 
   const [state, setState] = useState<State>({
     data: [],
@@ -43,7 +41,7 @@ const useFetchImageList = ({
           setState({ data: urls, status: "success" });
         })
         .catch((error) => {
-          setState({ data: fallbackArray, status: error });
+          setState({ data: [], status: error });
         });
     };
 

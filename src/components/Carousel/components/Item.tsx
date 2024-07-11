@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import fallbackImg from "../../../assets/fallbackImg.png";
 
 type Props = {
   imageUrl?: string;
@@ -33,7 +34,16 @@ export const Item: React.FC<Props> = ({ imageUrl }) => {
   }, []);
 
   return (
-    <Image ref={imgRef} src={loaded ? imageUrl : undefined} loading="lazy" />
+    <Image
+      ref={imgRef}
+      src={loaded ? imageUrl : undefined}
+      onError={(e) => {
+        if (e.target) {
+          (e.target as HTMLImageElement).src = fallbackImg;
+        }
+      }}
+      loading="lazy"
+    />
   );
 };
 

@@ -97,4 +97,6 @@ const ItemWrap = styled.div<ItemWrapProps>`
   min-width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
   animation: ${fadeIn} 0.5s ease-in;
+  background-color: #101010;
+  border-radius: 10px;
 `;
